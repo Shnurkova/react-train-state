@@ -17,6 +17,18 @@ export default function App() {
     };
 
     const [clicks, setClicks] = useState(0);
+    const [values, setValues] = useState({
+        good: 0,
+        neutral: 0,
+        bad: 0,
+    });
+
+    const handleChangeValues = () => {
+        setValues({
+            ...values,
+            bad: 3,
+        });
+    }
 
     const handleClick = () => {
         setClicks(clicks + 1)
@@ -25,6 +37,8 @@ export default function App() {
     const handleReset = () => {
         setClicks(0);
     }
+
+    const total = values.good + values.bad + values.neutral
 
 //     const [states, setStates] = useState(() => {
 //         const savedStates = window.localStorage.getItem('saved-states');
@@ -49,6 +63,7 @@ export default function App() {
             <ClickCounter value={clicks} onCount={ handleClick }/>
             <ClickCounter value={clicks} onCount={handleClick} />
             <button onClick={handleReset}>reset</button>
+            <button onClick={handleChangeValues}>change value { total }</button>
         </>
     );
 }
