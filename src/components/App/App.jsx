@@ -3,6 +3,10 @@ import Description from "../Description/Description";
 import Feedback from "../Feedback/Feedback";
 import Options from "../Options/Options";
 
+const ClickCounter = ({value, onCount }) => {   
+    return <button onClick={onCount}>clicks: {value}</button>;
+};
+
 export default function App() {
     // const startFeedback = { good: 0, neutral: 0, bad: 0 };
     
@@ -12,9 +16,15 @@ export default function App() {
 	bad: 0
     };
 
-    //  const handleClick = () => {
-    //      console.log('CLICK');
-    //  }
+    const [clicks, setClicks] = useState(0);
+
+    const handleClick = () => {
+        setClicks(clicks + 1)
+    }
+
+    const handleReset = () => {
+        setClicks(0);
+    }
 
 //     const [states, setStates] = useState(() => {
 //         const savedStates = window.localStorage.getItem('saved-states');
@@ -27,8 +37,6 @@ export default function App() {
 //       const updateFeedback = feedbackType => {
 
 //  }
-
-
     return (
         <>
             <Description />
@@ -38,6 +46,9 @@ export default function App() {
                 neutral={state.neutral}
                 bad={state.bad}
             />
+            <ClickCounter value={clicks} onCount={ handleClick }/>
+            <ClickCounter value={clicks} onCount={handleClick} />
+            <button onClick={handleReset}>reset</button>
         </>
     );
 }
