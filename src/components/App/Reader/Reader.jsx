@@ -6,24 +6,23 @@ export default function Reader({articles}) {
 
 
     const handlePrev = () => {
-        if (articleIdx === 0) return;
         setArticleIdx(articleIdx - 1)
     }
 
     const handleNext = () => {
-        if (articleIdx === articles.length - 1) return;
         setArticleIdx(articleIdx + 1)
     }
 
     const currentArticles = articles[articleIdx];
-    console.log(currentArticles);
+    const isFirst = articleIdx === 0;
+    const isLast = articleIdx === articles.length - 1;
 
     return (
         <div>
             <div>
             <div>
-                <button onClick={handlePrev}>prev</button>
-                <button onClick={handleNext}>next</button>
+                <button onClick={handlePrev} disabled={isFirst}>prev</button>
+                <button onClick={handleNext} disabled={isLast}>next</button>
             </div>
                 <p>{articleIdx + 1}/{ articles.length }</p>
             </div>
