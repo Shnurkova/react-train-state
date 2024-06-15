@@ -3,6 +3,7 @@ import Description from "../Description/Description";
 import Feedback from "../Feedback/Feedback";
 import Options from "../Options/Options";
 import Reader from "./Reader/Reader";
+import articles from "../articles.json"
 
 const ClickCounter = ({value, onCount }) => {   
     return <button onClick={onCount}>clicks: {value}</button>;
@@ -53,8 +54,8 @@ export default function App() {
             <button onClick={handleReset}>reset</button>
 
 
-            
-            <Reader />
+
+            <Reader articles={ articles } />
         </>
     );
 }
