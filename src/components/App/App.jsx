@@ -7,7 +7,7 @@ import Notification from "../Notification/Notification";
 
 
 export default function App() {
-    // const startFeedback = { good: 0, neutral: 0, bad: 0 };
+    const startFeedback = { good: 0, neutral: 0, bad: 0 };
 
     const [states, setStates] = useState({ good: 0, neutral: 0, bad: 0 });
 //     const [states, setStates] = useState(() => {
@@ -27,15 +27,20 @@ export default function App() {
     });
     };
 
-    const reset 
+    const resetFeedback = () => {
+        setStates(startFeedback)
+    };
 
     const totalFeedback = good + neutral + bad;
+    const positiveFeedback = Math.round((good / totalFeedback) * 100)
+
 
     return (
         <>
             <Description />
             <Options
                 updateFeedback={updateFeedback}
+                reset={resetFeedback}
                 total={totalFeedback} />
             {totalFeedback > 0 ? (
                 <Feedback
@@ -43,6 +48,7 @@ export default function App() {
                 neutral={states.neutral}
                 bad={states.bad}
                 total={totalFeedback}
+                positive={positiveFeedback}
             /> 
             ) : (
                 <Notification />
