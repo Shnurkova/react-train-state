@@ -2,6 +2,7 @@ import { useState } from "react";
 import Description from "../Description/Description";
 import Feedback from "../Feedback/Feedback";
 import Options from "../Options/Options";
+import Notification from "../Notification/Notification";
 
 
 
@@ -15,7 +16,9 @@ export default function App() {
 //             return JSON.parse(savedStates);
 //         }
 //         return { good: 0, neutral: 0, bad: 0 };
-//     });
+    //     });
+    
+    const { good, neutral, bad } = states;
     
     const updateFeedback = feedbackType => {
     setStates({
@@ -24,15 +27,26 @@ export default function App() {
     });
     };
 
+    const reset 
+
+    const totalFeedback = good + neutral + bad;
+
     return (
         <>
             <Description />
-            <Options updateFeedback={ updateFeedback } />
-            <Feedback
+            <Options
+                updateFeedback={updateFeedback}
+                total={totalFeedback} />
+            {totalFeedback > 0 ? (
+                <Feedback
                 good={states.good}
                 neutral={states.neutral}
                 bad={states.bad}
-            />
+                total={totalFeedback}
+            /> 
+            ) : (
+                <Notification />
+            )}
         </>
     );
 }
