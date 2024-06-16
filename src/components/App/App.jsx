@@ -9,10 +9,6 @@ import Notification from "../Notification/Notification";
 export default function App() {
     const startFeedback = { good: 0, neutral: 0, bad: 0 };
 
-    useEffect(() => {
-        console.log('CLICKS'), ;
-    }, []);
-
 
     const [states, setStates] = useState({ good: 0, neutral: 0, bad: 0 });
 //     const [states, setStates] = useState(() => {
@@ -22,6 +18,10 @@ export default function App() {
 //         }
 //         return { good: 0, neutral: 0, bad: 0 };
     //     });
+
+    useEffect(() => {
+        console.log('CLICKS'), states;
+    }, [states]);
 
     const { good, neutral, bad } = states;
     
