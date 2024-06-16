@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Description from "../Description/Description";
 import Feedback from "../Feedback/Feedback";
 import Options from "../Options/Options";
@@ -9,6 +9,11 @@ import Notification from "../Notification/Notification";
 export default function App() {
     const startFeedback = { good: 0, neutral: 0, bad: 0 };
 
+    useEffect(() => {
+        console.log('CLICKS'), ;
+    }, []);
+
+
     const [states, setStates] = useState({ good: 0, neutral: 0, bad: 0 });
 //     const [states, setStates] = useState(() => {
 //         const savedStates = window.localStorage.getItem('saved-states');
@@ -17,7 +22,7 @@ export default function App() {
 //         }
 //         return { good: 0, neutral: 0, bad: 0 };
     //     });
-    
+
     const { good, neutral, bad } = states;
     
     const updateFeedback = feedbackType => {
